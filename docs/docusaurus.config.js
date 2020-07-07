@@ -1,6 +1,6 @@
 module.exports = {
   title: 'My Site',
-  tagline: 'The tagline of my site.. I AM TRAVIS',
+  tagline: 'The tagline of my site.. I AM TRAVIS and i am here :)',
 
   favicon: 'img/favicon.ico',
 
