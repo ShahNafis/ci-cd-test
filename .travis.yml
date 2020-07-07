@@ -14,9 +14,20 @@ cache:
 #     - cd ./docs && npm install && GIT_USER="${GH_NAME}" docusaurus deploy
 
 # Overall builds only on master and PR into master
-if: branch = master
-script:
-    - git config --global user.name "${GH_NAME}"
-    - git config --global user.email "${GH_EMAIL}"
-    - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
-    - cd ./docs && npm install && GIT_USER="${GH_NAME}" docusaurus deploy
+# if: branch = master
+# script:
+#     - git config --global user.name "${GH_NAME}"
+#     - git config --global user.email "${GH_EMAIL}"
+#     - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
+#     - cd ./docs && npm install && GIT_USER="${GH_NAME}" docusaurus deploy
+
+
+jobs:
+  include:
+    - # require the branch name to be master (note for PRs this is the base branch name)
+      if: branch = master
+      script:
+        - git config --global user.name "${GH_NAME}"
+        - git config --global user.email "${GH_EMAIL}"
+        - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
+        - cd ./docs && npm install && GIT_USER="${GH_NAME}" docusaurus deploy
