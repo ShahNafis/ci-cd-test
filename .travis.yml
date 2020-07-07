@@ -4,14 +4,13 @@ node_js:
 # Build Doc site
 cache:
   yarn: true
-jobs:
-  exclude:
-    - if: branch = master
-      script:
-        - git config --global user.name "${GH_NAME}"
-        - git config --global user.email "${GH_EMAIL}"
-        - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
-        - cd ./docs && npm install && GIT_USER="${GH_NAME}" docusaurus deploy
+
+if: branch = master
+  script:
+    - git config --global user.name "${GH_NAME}"
+    - git config --global user.email "${GH_EMAIL}"
+    - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
+    - cd ./docs && npm install && GIT_USER="${GH_NAME}" docusaurus deploy
 
 # script:
 #     - git config --global user.name "${GH_NAME}"
